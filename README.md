@@ -40,9 +40,7 @@ sls deploy
 
 > Note: Windows用户，请使用Administrator权限启动`Node.js command prompt`，否则扫码认证会失败。
 
-从发布日志中获取API网关地址，写入客户端，例如：https://service-xxxyyzzz-1001234567.gz.apigw.tencentcs.com
-
-![image](https://user-images.githubusercontent.com/2777660/138798904-1435d703-db61-47cb-9044-c6d50424bfac.png)
+在客户端访问API，获取apaasToken：https://service-xxxyyzzz-1001234567.gz.apigw.tencentcs.com/base/v1/apaas/token?userId=12345678
 
 > Note: 在浏览器中直接打开你的网关地址，也应该是成功的才对，如上图所示。
 
