@@ -1,6 +1,8 @@
-.PHONY: all clean dev prod help
+.PHONY: all build clean dev prod help
 
-all: .build
+all: prod
+
+build: .build
 
 .build: package.json Makefile
 	npm install && rm -f .build && touch .build

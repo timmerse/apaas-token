@@ -29,6 +29,7 @@ inputs:
     isDisabled: false
     environment: release
     id: ${output:${stage}:${app}:apaas_token_apigw.serviceId}
+    name: apaas_token_apigw
     api:
       path: /
       cors: true
