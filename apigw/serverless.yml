@@ -1,0 +1,23 @@
+app: apaas-token
+stage: prod # The debugger only for test env.
+
+component: apigateway
+name: apaas_token_apigw
+
+inputs:
+  region: ap-guangzhou
+  serviceName: apaas_token_apigw
+  serviceDesc: apaas_token_apigw
+  environment: release
+  protocols:
+    - http
+    - https
+  endpoints:
+    - path: /helloworld
+      protocol: HTTP
+      method: ANY # GET POST PUT DELETE HEAD ANY
+      apiName: 'mock-api'
+      serviceType: MOCK
+      serviceMockReturnMessage: '"HelloWorld"'
+
+# https://github.com/serverless-components/tencent-apigateway/blob/master/docs/configure.md
