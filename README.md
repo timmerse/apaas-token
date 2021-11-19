@@ -42,6 +42,8 @@ sls deploy
 
 在客户端访问API，获取apaasToken：https://service-xxxyyzzz-1001234567.gz.apigw.tencentcs.com/base/v1/apaas/token?userId=12345678
 
+![apaasToken](https://user-images.githubusercontent.com/91418940/142608944-0890bf01-7ad0-4e78-b281-0c1fed370452.png)
+
 > Note: 在浏览器中直接打开你的网关地址，也应该是成功的才对，如上图所示。
 
 ## FAQ
