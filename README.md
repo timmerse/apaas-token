@@ -1,6 +1,6 @@
 # apaas-token
 
-The backend for [Timmerse](https://www.npmjs.com/package/timmerse)
+The backend to generate token for [Timmerse](https://www.npmjs.com/package/timmerse) SDK.
 
 ## Usage
 
