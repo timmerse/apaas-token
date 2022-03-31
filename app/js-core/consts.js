@@ -1,6 +1,6 @@
 'use strict';
 
-// MySQL日期字段格式化字符串 @see https://stackoverflow.com/a/27381633
+// MySQL date format string @see https://stackoverflow.com/a/27381633
 const MYSQL_DATETIME = 'YYYY-MM-DD HH:mm:ss';
 
 // UTC timezone to CTS(+08:00) @see https://momentjs.com/docs/#/manipulating/timezone-offset/
