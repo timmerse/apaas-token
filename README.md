@@ -2,77 +2,76 @@
 
 The backend to generate token for [Timmerse SDK](https://www.npmjs.com/package/timmerse).
 
-## Usage
+## Directions
 
-首先，需要开通腾讯云资源：
+Activate the following Tencent Cloud services:
 
-* [开通API网关](https://console.cloud.tencent.com/apigateway/service?rid=1)，通过API网关访问云函数，提供HTTP API。
-* [开通COS存储](https://console.cloud.tencent.com/cos5)，保存云函数代码用的。
-* [开通SLS日志服务](https://console.cloud.tencent.com/cls/overview?region=ap-guangzhou)，云函数保存日志用的。
-* [云函数授权](https://console.cloud.tencent.com/scf/list?rid=1&ns=default)，云函数访问其他云资源用的。
+- [API Gateway](https://console.cloud.tencent.com/apigateway/service?rid=1), which allows you to access cloud functions and use HTTP APIs
+- [COS](https://console.cloud.tencent.com/cos5), which offers storage for your cloud function code
+- [CLS](https://console.cloud.tencent.com/cls/overview?region=ap-guangzhou), which helps you manage the logs of your cloud functions
+- [SCF](https://console.cloud.tencent.com/scf/list?rid=1&ns=default), which allows your cloud functions to access other Tencent Cloud services
 
-接着，安装云函数工具[serverless/sls](https://cloud.tencent.com/document/product/583/44753)，安装依赖库：
+Run the command below to install [Serverless Framework](https://intl.cloud.tencent.com/document/product/583/36263):
 
 ```bash
 npm install -g serverless
 npm install
 ```
 
-> Note: 若安装sls有问题，请看官方说明文档[sls](https://cloud.tencent.com/document/product/583/44753)，有详细解决办法。
+> Note: For directions on how to install Serverless Framework, see [Installation](https://intl.cloud.tencent.com/document/product/583/36263).
 
-> Note: 关于Node安装，请参考[nodejs](https://nodejs.org/zh-cn/download/)，在Windows下请使用Administrator权限启动`Node.js command prompt`，不支持PowerShell。
+> Note: About the installation of Node.js, see [Downloads](https://nodejs.org/zh-cn/download/). On Windows, instead of using PowerShell, you need to launch `Node.js command prompt` as Administrator.
 
-然后，创建环境变量文件`.env`，注意需要修改下面所有的`xxx`的内容：
+Create an environment variable file `.env`. Replace `xxx` with the actual application ID and key.
 
 ```bash
 APAAS_APPID=xxxxxxxxxxxxxxxx
 APAAS_SECRET=xxxxxxxxxxxxxxxx
 ```
 
-> Note: 申请开发者业务 ID 和业务 Key（请联系 colleenyu@tencent.com 申请）。
+> Note: To apply for a developer application ID and key, contact us at colleenyu@tencent.com.
 
-最后，发布云函数，需要扫码授权或配置[本地密钥授权](https://cloud.tencent.com/document/product/583/44786#.E6.9C.AC.E5.9C.B0.E5.AF.86.E9.92.A5.E6.8E.88.E6.9D.83)：
+Deploy your cloud function. To grant the necessary access, scan the QR code or [configure the key locally](https://intl.cloud.tencent.com/document/product/583/38859#authorizing-with-local-key).
 
 ```bash
 npm install
 sls deploy
 ```
 
-> Note: Windows用户，请使用Administrator权限启动`Node.js command prompt`，否则扫码认证会失败。
+> Note: On Windows, in order to be able to scan the QR code to grant the necessary access, you need to launch `Node.js command prompt` as Administrator.
 
-在客户端访问API，获取apaasToken：https://service-xxxyyzzz-1001234567.gz.apigw.tencentcs.com/base/v1/apaas/token?userId=12345678
+Access the API `https://{YOUR_SERVICE}.apigw.tencentcs.com/base/v1/apaas/token?userId=12345678` from a client to get the `apaasToken`.
 
 ![apaasToken](https://user-images.githubusercontent.com/91418940/142608944-0890bf01-7ad0-4e78-b281-0c1fed370452.png)
 
-> Note: 在浏览器中直接打开你的网关地址，也应该是成功的才对，如上图所示。
+> Note: You can also get the `apaasToken` by opening your gateway address in a browser, as shown above.
 
-## FAQ
+## FAQs
 
-Q: 如何查看云函数的日志？
+Q: How do I view the logs of my cloud function?
 
-> A: 查看云函数的日志，请点[这里](https://console.cloud.tencent.com/scf/list-detail?rid=1&ns=default&id=application-prod-apaas-token&menu=log&tab=codeTab)
+> A: You can view the logs of cloud functions [here](https://console.cloud.tencent.com/scf/list-detail?rid=1&ns=default&id=application-prod-apaas-token&menu=log&tab=codeTab).
 
-Q: 如何删除云函数？
+Q: How do I delete a cloud function?
 
-> A: 若需要删除云函数，请执行命令：`sls remove`
+> A: Run the command `sls remove` to delete a cloud function.
 
-Q: 为何网关返回的是`SystemError(99): Invalid TRTC config`？
+Q: What should I do if API Gateway returns `SystemError(99): Invalid TRTC config`?
 
-> A: 请确认环境变量`.env`文件，请不要更改文件名，请检查是否正确配置了TRTC的SdkAppId(TRTC_TIM_APPID)和Secret(TRTC_TIM_SECRET)。
+> A: Check if you changed the name of the `.env` file (you must not change the filename) and whether the TRTC application ID (TRTC_TIM_APPID) and key (TRTC_TIM_SECRET) were correctly configured.
 
-Q: 为何网关和函数无法访问？
+Q: What should I do if I can’t access API Gateway or SCF?
 
-> A：请确认是否开通服务，请确认是否账户欠费。
+> A: Make sure you have activated the services and your account does not have overdue payment.
 
-Q：为何Windows无法发布云函数？
+Q: What should I do if I fail to deploy my cloud function on Windows?
 
-> A: 请使用系统管理员(Administrator)启动`Node.js command prompt`，请不要用PowerShell。
+> A: Launch `Node.js command prompt` as Administrator. Do not use PowerShell.
 
-Q: 如何确认网关创建成功？
+Q: How do I know whether I have created a gateway successfully?
 
-> A: 若能在浏览器访问，则网关正常：https://service-xxxyyzzz-1001234567.gz.apigw.tencentcs.com/helloworld
+> A: If you can access the gateway `https://{YOUR_SERVICE}.apigw.tencentcs.com/helloworld` in a browser, then it’s created successfully.
 
-Q: 如何确认函数创建成功？
+Q: How do I know whether I have created a function successfully?
 
-> A: 若能在浏览器访问，则函数创建正常：https://service-xxxyyzzz-1001234567.gz.apigw.tencentcs.com
-
+> A: If you can access the function `https://{YOUR_SERVICE}.apigw.tencentcs.com/helloworld` in a browser, then it’s created successfully.
